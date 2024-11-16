@@ -47,10 +47,10 @@ void printMahasiswa(const Mahasiswa& mhs) {
 int main() {
     vector<Mahasiswa> mahasiswa = {
         {"531424112", "Muhammad Robby Darmawan", "Gorontalo", "E", 90},
-        {"532414011", "Andi jio", "Bandung", "B", 90.0},
-        {"532414010", "Tono oji", "Surabaya", "A", 78.0},
-        {"532414009", "Siti", "Medan", "C", 88.0},
-        {"532414008", "Andi", "Yogyakarta", "B", 82.5}
+        {"532414011", "Andi jio", "Gorontalo", "B", 90.0},
+        {"532414010", "Tono oji", "Gorontalo", "A", 78.0},
+        {"532414009", "Oji K", "Gorontalo", "C", 88.0},
+        {"532414008", "Andi SK", "Gorontalo", "B", 82.5}
     };
 
     string cariNama;
