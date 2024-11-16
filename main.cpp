@@ -55,7 +55,8 @@ int main() {
 
     string cariNama;
     cout << "Masukkan nama mahasiswa yang dicari: ";
-    cin >> cariNama;
+    cin.ignore();
+    getline(cin, cariNama);
 
     int indexSeq = sequentialSearch(mahasiswa, cariNama);
     if (indexSeq != -1) {
