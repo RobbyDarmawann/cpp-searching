@@ -80,7 +80,6 @@ int main() {
 
     string cariNama;
     cout << "Masukkan nama mahasiswa yang dicari:";
-    cin.ignore();
     getline(cin, cariNama);
     cout << "Nama yang dimasukkan: '" << cariNama << "' (dengan panjang " << cariNama.length() << ")" << endl;
 
