@@ -136,14 +136,14 @@ char* printMahasiswa(const Mahasiswa& mhs, char* buffer) {
 }
 
 int main() {
-    Mahasiswa mahasiswa[] = {
+    const int size = 5;
+    Mahasiswa mahasiswa[size] = {
         {"531424112", "Uji C", "Gorontalo", "E", 90},
         {"532414011", "Andi Jio", "Gorontalo", "E", 90},
         {"532414010", "Tono Oji", "Gorontalo", "E", 90},
         {"532414009", "Oji K", "Gorontalo", "E", 90},
         {"532414008", "Andi SK", "Gorontalo", "E", 90}
     };
-    int size = sizeof(mahasiswa) / sizeof(mahasiswa[0]);
 
     char cariNama[50];
     char lg = 'Y';
