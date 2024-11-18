@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstring>  // Untuk fungsi strcpy dan strcmp
 using namespace std;
 
 struct Mahasiswa {
@@ -20,14 +19,12 @@ char* toLowerCase(char* str) {
 }
 
 char* trim(char* str) {
-    // Trim leading spaces
     int start = 0;
     while (str[start] == ' ') {
         start++;
     }
     
-    // Trim trailing spaces
-    int end = start;
+    int end = 0;
     while (str[end] != '\0') {
         end++;
     }
@@ -36,7 +33,6 @@ char* trim(char* str) {
         end--;
     }
     
-    // Shift characters
     int j = 0;
     for (int i = start; i <= end; i++) {
         str[j++] = str[i];
@@ -45,20 +41,41 @@ char* trim(char* str) {
     return str;
 }
 
+char* myStrcpy(char* dest, const char* src) {
+    int i = 0;
+    while (src[i] != '\0') {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = '\0';
+    return dest;
+}
+
+int myStrcmp(const char* str1, const char* str2) {
+    int i = 0;
+    while (str1[i] != '\0' && str2[i] != '\0') {
+        if (str1[i] != str2[i]) {
+            return str1[i] - str2[i];
+        }
+        i++;
+    }
+    return str1[i] - str2[i];
+}
+
 int sequentialSearch(Mahasiswa data[], int size, const char* nama) {
     int posisi = -1;
     char normalizedNama[50];
-    strcpy(normalizedNama, nama);
+    myStrcpy(normalizedNama, nama);
     toLowerCase(normalizedNama);
     trim(normalizedNama);
 
     for (int i = 0; i < size; ++i) {
         char normalizedDataNama[50];
-        strcpy(normalizedDataNama, data[i].Nama);
+        myStrcpy(normalizedDataNama, data[i].Nama);
         toLowerCase(normalizedDataNama);
         trim(normalizedDataNama);
 
-        if (strcmp(normalizedDataNama, normalizedNama) == 0) {
+        if (myStrcmp(normalizedDataNama, normalizedNama) == 0) {
             posisi = i;
             cout << "Data Ditemukan" << endl;
             break;
@@ -73,7 +90,7 @@ int sequentialSearch(Mahasiswa data[], int size, const char* nama) {
 int binarySearch(Mahasiswa data[], int size, const char* nama) {
     int posisi = -1;
     char normalizedNama[50];
-    strcpy(normalizedNama, nama);
+    myStrcpy(normalizedNama, nama);
     toLowerCase(normalizedNama);
     trim(normalizedNama);
 
@@ -81,17 +98,16 @@ int binarySearch(Mahasiswa data[], int size, const char* nama) {
     while (left <= right) {
         int mid = left + (right - left) / 2;
         char midNama[50];
-        strcpy(midNama, data[mid].Nama);
+        myStrcpy(midNama, data[mid].Nama);
         toLowerCase(midNama);
         trim(midNama);
 
-        int cmp = strcmp(midNama, normalizedNama);
-        if (cmp == 0) {
+        if (myStrcmp(midNama, normalizedNama) == 0) {
             posisi = mid;
             cout << "Data Ditemukan" << endl;
             break;
         }
-        if (cmp < 0) {
+        if (myStrcmp(midNama, normalizedNama) < 0) {
             left = mid + 1;
         } else {
             right = mid - 1;
@@ -106,7 +122,7 @@ int binarySearch(Mahasiswa data[], int size, const char* nama) {
 Mahasiswa* sortData(Mahasiswa data[], int size) {
     for (int i = 0; i < size - 1; ++i) {
         for (int j = 0; j < size - i - 1; ++j) {
-            if (strcmp(data[j].Nama, data[j + 1].Nama) > 0) {
+            if (myStrcmp(data[j].Nama, data[j + 1].Nama) > 0) {
                 swap(data[j], data[j + 1]);
             }
         }
@@ -135,7 +151,6 @@ int main() {
 
     while (lg == 'Y' || lg == 'y') {
         cout << "Masukkan nama mahasiswa yang dicari: ";
-        cin.ignore(); // Mengabaikan newline sebelumnya
         cin.getline(cariNama, 50);
 
         cout << "\nMencari dengan Sequential Search...\n";
